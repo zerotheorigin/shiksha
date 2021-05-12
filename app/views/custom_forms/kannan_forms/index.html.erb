@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Custom Forms Kannan Forms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Question1</th>
+      <th>Question2</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @custom_forms_kannan_forms.each do |custom_forms_kannan_form| %>
+      <tr>
+        <td><%= custom_forms_kannan_form.question1 %></td>
+        <td><%= custom_forms_kannan_form.question2 %></td>
+        <td><%= link_to 'Show', custom_forms_kannan_form %></td>
+        <td><%= link_to 'Edit', edit_custom_forms_kannan_form_path(custom_forms_kannan_form) %></td>
+        <td><%= link_to 'Destroy', custom_forms_kannan_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Custom Forms Kannan Form', new_custom_forms_kannan_form_path %>

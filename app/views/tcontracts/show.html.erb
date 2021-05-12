@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @tcontract.subject_id %>
+</p>
+
+<p>
+  <strong>Teacher:</strong>
+  <%= @tcontract.teacher_id %>
+</p>
+
+<%= link_to 'Edit', edit_tcontract_path(@tcontract) %> |
+<%= link_to 'Back', tcontracts_path %>

@@ -1,0 +1,155 @@
+
+<div class= "container"> <!-- Outer div -->
+<h1>Welcome Teacher <%= current_teacher.first_name %>, <%= current_teacher.last_name %>
+ </h1>
+	<div>
+		<h1>Class/Section/Subjects that I take care</h1>
+
+<% current_teacher.subjects.each do |subj| %>
+<%= form_with( url: teachers_home_search_path,local: :true,method: :post) do |f| %>
+	<%=f.hidden_field :subject,value: subj.id %>
+	<%=f.submit "#{subj.section.std} - #{subj.section.sec} - #{subj.sub_name}" %>
+<% end %>
+<% end %>
+	</div>
+	<div>
+		<h1><%= @subj.section.school.name %>,<%=@subj.section.school.city %> | <%= @subj.section.std %> - <%= @subj.section.sec %> Dashboard </h1>
+	<div>
+<div>
+<table>
+<tr>
+<th>First Name </th>
+<th>Last Name </th>
+<th>Email</th>
+<th>Gender</th>
+<th>DOB</th>
+<th>Admission Date </th>
+<th>Subject </th>
+<th> Total</th>
+<th> New </th>
+</tr>
+<% @subj.section.subjects.each do |subj| %>
+<tr>
+<td><%= (subj.teachers.first||current_teacher).first_name %> </td>
+<td><%= (subj.teachers.first||current_teacher).last_name %> </td>
+<td><%= (subj.teachers.first||current_teacher).email %> </td>
+<td><%= (subj.teachers.first||current_teacher).gender %></td>
+<td><%= (subj.teachers.first||current_teacher).DOB %></td>
+<td><%= (subj.teachers.first||current_teacher).DOJS %> </td>
+<td><%= subj.sub_name %></td>
+<td><%= (subj.teachers.first||current_teacher).infolets.where("parent_id is null and role like ?",'%feed%').count %> </td>
+<td><%= (subj.teachers.first||current_teacher).infolets.where("parent_id is null and role like ? and created_at > ? ",'%feed%',(current_student||current_teacher).last_sign_in_at).count %></td>
+</tr>
+<% end %>
+<% @class_mates.each do |cm| %>
+<tr>
+<td><%= cm.first_name %> </td>
+<td><%= cm.last_name %> </td>
+<td><%= cm.email %> </td>
+<td><%= cm.gender %></td>
+<td><%= cm.DOB %></td>
+<td><%= cm.DOJS %> </td>
+<td></td>
+<td><%= cm.infolets.where("parent_id is null and role like ?",'%feed%').count %> </td>
+<td><%= cm.infolets.where("parent_id is null and role like ? and created_at > ? ",'%feed%',(current_student||current_teacher).last_sign_in_at).count %></td>
+</tr>
+<% end %>
+</table>
+</div>
+
+<div>
+<h1> Class Feed</h1>
+<!-- Glide form starts -->
+        <div class="card p-3 infolet_form">
+                <div class="card-body small" id="glide_form">
+                <%= form_with(model: @infolet, local: true) do |form| %>
+  <% if @infolet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@infolet.errors.count, "error") %> prohibited this infolet from being saved:</h2>
+
+      <ul>
+        <% @infolet.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= form.rich_text_area :content,class: "infolet_input_box", placeholder: 'Infolet here' %>
+    <%= form.text_field :tag_list,class: "infolet_tag_input_box", placeholder: 'Tags' %>
+    <%= form.hidden_field :parent_id, class: "form-control" %>
+    <!-- in users/_form.html.erb -->
+    <%= form.collection_select(:role, Infolet::ROLES, :to_s, lambda{|i| i.to_s.humanize}) %>
+
+    <%= button_tag :submit, class: "btn btn-primary sub_button1",style: "float: right;"  do %>
+      ilet 
+    <% end %>
+<% end %>
+</div>
+</div>
+</div>
+
+<hr/>
+<!-- /div -->
+<!-- nav-tabs starts here -->
+<div>
+<ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="pills-sec-tab" data-toggle="pill" href="#pills-sec" role="tab" aria-controls="pills-sec" aria-selected="true">My Section</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-class-tab" data-toggle="pill" href="#pills-class" role="tab" aria-controls="pills-class" aria-selected="false">My Class</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-school-tab" data-toggle="pill" href="#pills-school" role="tab" aria-controls="pills-school" aria-selected="false">My School</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-edugroup-tab" data-toggle="pill" href="#pills-edugroup" role="tab" aria-controls="pills-edugroup" aria-selected="false">My Edu.Group</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-board-tab" data-toggle="pill" href="#pills-board" role="tab" aria-controls="pills-board" aria-selected="false">My Board</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-assign-tab" data-toggle="pill" href="#pills-assign" role="tab" aria-controls="pills-assign" aria-selected="false">My Assignments</a>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-sec" role="tabpanel" aria-labelledby="pills-home-tab">
+<div style="width:60%;align:center">
+<!-- Glide form ends here -->
+<%= render 'students/home/ilet',:my_ilets => @incoming_ilets  %>
+</div>
+</div>
+  <div class="tab-pane fade" id="pills-class" role="tabpanel" aria-labelledby="pills-profile-tab">
+<div style="width:60%;align:center">
+<!-- Glide form ends here -->
+<%= render 'students/home/ilet', :my_ilets => @incoming_class_ilets  %>
+</div>
+</div>
+  <div class="tab-pane fade" id="pills-school" role="tabpanel" aria-labelledby="pills-contact-tab">
+<div style="width:60%;align:center">
+<!-- Glide form ends here -->
+<%= render 'students/home/ilet',:my_ilets => @incoming_school_ilets  %>
+</div>
+</div>
+  <div class="tab-pane fade" id="pills-edugroup" role="tabpanel" aria-labelledby="pills-profile-tab">
+<div style="width:60%;align:center">
+<!-- Glide form ends here -->
+<%= render 'students/home/ilet', :my_ilets => @incoming_edugroup_ilets  %>
+</div>
+</div>
+  <div class="tab-pane fade" id="pills-board" role="tabpanel" aria-labelledby="pills-profile-tab">
+<div style="width:60%;align:center">
+<!-- Glide form ends here -->
+<%= render 'students/home/ilet', :my_ilets => @incoming_board_ilets  %>
+</div>
+</div>
+  <div class="tab-pane fade" id="pills-assign" role="tabpanel" aria-labelledby="pills-profile-tab">
+<div style="width:60%;align:center">
+<!-- Glide form ends here -->
+<%= render 'students/home/ilet', :my_ilets => @incoming_assign_ilets  %>
+</div>
+</div>
+</div>
+</div>
+</div>

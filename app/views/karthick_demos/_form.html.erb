@@ -1,0 +1,47 @@
+<%= form_with(model: karthick_demo, local: true) do |form| %>
+  <% if karthick_demo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(karthick_demo.errors.count, "error") %> prohibited this karthick_demo from being saved:</h2>
+
+      <ul>
+        <% karthick_demo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :age %>
+    <%= form.text_field :age %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender %>
+    <%= form.text_field :gender %>
+  </div>
+
+  <div class="field">
+    <%= form.label :skills %>
+    <%= form.text_field :skills %>
+  </div>
+
+  <div class="field">
+    <%= form.label :interests %>
+    <%= form.text_field :interests %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hobbies %>
+    <%= form.text_field :hobbies %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

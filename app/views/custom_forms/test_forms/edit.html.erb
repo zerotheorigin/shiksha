@@ -1,0 +1,11 @@
+
+<!-- lib/template/erb/scaffold/edit.html.erb -->
+<% provide(:title, 'CustomForms::TestForm') %>
+<h1> SSR </h1>
+<% content_for :breadcrumb do %>
+    <%= link_to('Home', root_path) %>
+    <%= link_to('custom_forms_test_forms', custom_forms_test_forms_path) %>
+    <a class="current"><%= @custom_forms_test_form.name %></a>
+<% end %>
+
+<%= render 'form' %>

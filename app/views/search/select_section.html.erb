@@ -1,0 +1,10 @@
+<h1>Search#select_section</h1>
+<p>Find me in app/views/search/select_section.html.erb</p>
+
+<% @subjects.each do |subj| %>
+	<%= link_to subj.sub_name , select_subject_path(:subject => subj.id), {:method => :post,local: :true} %> - 
+	<% unless subj.teacher.nil? %>
+		<%= subj.teacher.first_name %> <%= subj.teacher.last_name %>
+	<% end %>
+	<br>
+<% end %>

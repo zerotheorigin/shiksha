@@ -1,0 +1,122 @@
+<%= form_with(model: teacher, local: true) do |form| %>
+  <% if teacher.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(teacher.errors.count, "error") %> prohibited this teacher from being saved:</h2>
+
+      <ul>
+        <% teacher.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :DOB %>
+    <%= form.date_select :DOB %>
+  </div>
+
+  <div class="field">
+    <%= form.label :DOJS %>
+    <%= form.date_select :DOJS %>
+  </div>
+
+  <div class="field">
+    <%= form.label :staff_no %>
+    <%= form.text_field :staff_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender %>
+    <%= form.text_field :gender %>
+  </div>
+
+  <div class="field">
+    <%= form.label :street1 %>
+    <%= form.text_field :street1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :street2 %>
+    <%= form.text_field :street2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pincode %>
+    <%= form.text_field :pincode %>
+  </div>
+
+  <div class="field">
+    <%= form.label :qualification %>
+    <%= form.text_field :qualification %>
+  </div>
+
+  <div class="field">
+    <%= form.label :family_work_street1 %>
+    <%= form.text_field :family_work_street1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :family_work_street2 %>
+    <%= form.text_field :family_work_street2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :family_work_location %>
+    <%= form.text_field :family_work_location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :family_work_city %>
+    <%= form.text_field :family_work_city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :family_work_pincode %>
+    <%= form.text_field :family_work_pincode %>
+  </div>
+
+  <div class="field">
+    <%= form.label :family_mobile1 %>
+    <%= form.text_field :family_mobile1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :family_mobile2 %>
+    <%= form.text_field :family_mobile2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :family_work_ph %>
+    <%= form.text_field :family_work_ph %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subject_id %>
+    <%= form.text_field :subject_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

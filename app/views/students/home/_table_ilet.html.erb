@@ -1,0 +1,77 @@
+<% unless my_ilets.nil? %>
+<table id="t01">
+<tr>
+<th>Avatar</th>
+<th>Name</th>
+<th>Email</th>
+<th>Sent</th>
+<th>Tags</th>
+<th>Msg.Snippet</th>
+<th>Comments</th>
+</tr>
+<% my_ilets.each do |ilets| %>
+<% ilets.each do |ilet| %>
+<tr>
+<td class="infolet_form">
+        <div class="profileImage1" style="align:center;">
+                                <%= (ilet.student || ilet.teacher||Tcontract.find(ilet.tcontract_id).teacher).email[0..0].capitalize %>
+        </div>
+</td>
+<td class="infolet_form small">
+        <b class="p-3"> <%= (ilet.student || ilet.teacher||Tcontract.find(ilet.tcontract_id).teacher).first_name%>,<%=(ilet.student || ilet.teacher || Tcontract.find(ilet.tcontract_id).teacher).last_name %></b> 
+</td>
+<td class="small infolet_form">
+<%= (ilet.student || ilet.teacher || Tcontract.find(ilet.tcontract_id).teacher).email %> 
+</td>
+<td class="infolet_form small">
+<%= time_ago_in_words(ilet.created_at) %> 
+</td>
+ <% ilc = ilet.comments.new %>
+<td class="small infolet_form">
+        <% ilet.tag_list.each do |tag| %>
+                <%= link_to "##{tag}",students_home_search_path(:tag => tag) %>
+        <% end %>
+</td>
+<td class="small infolet_form">
+<%= link_to "#{ilet.content.to_plain_text.squish[0..50]}","#",{id: ilc.object_id.to_s + '_div'}   %> 
+</td>
+       
+<td class="text-black small infolet_form">
+<%= image_tag 'comment.svg' %> <%= link_to "#{ilet.comments.count}","#",{id: ilc.object_id.to_s + '_div'}   %>
+<script>
+$('#<%=ilc.object_id.to_s %>_div').click(function (event) {
+$('#<%=ilc.object_id.to_s %>_hdiv').toggle();
+  event.preventDefault(); // Prevent link from following its href
+});
+</script>
+</td>
+</tr>
+	<tr> 
+        <td colspan="7" class="small infolet_form" id="<%= ilc.object_id.to_s %>_hdiv" style="display:none;"> 
+	<div>
+		<%= ilet.content %>
+	</div>
+	<hr/>
+	<ul>
+		<% unless ilet.comments.nil? %>
+			<% ilet.comments.order(created_at: :asc).each do |comm| %>
+				<li><%= (comm.student||comm.teacher||Tcontract.find(comm.tcontract_id).teacher).first_name %>,<%= (comm.student||comm.teacher || Tcontract.find(comm.tcontract_id).teacher).last_name%> : <%= comm.content %> </li>
+			<% end %>
+		<% end %>
+	</ul>
+        <%= form_for ilc, :html => { id: ilc.object_id.to_s } do |il| %>
+        <div class="align-self-md-stretch">
+         <div class="infolet_form">
+                <%= il.rich_text_area :content,{ class: "mb-2 comment_input_text", placeholder: 'Add Comment',id: "content_#{ilc.object_id.to_s}"} %>
+                <%= il.hidden_field :parent_id, {value: ilet.id} %>
+        </div>
+        <div>
+        <%= image_submit_tag 'logo1.svg',class: "btn mb-2 profileImage1 bg-light", style: "float:right;" %>
+        </div>
+        </div>
+	</td>
+        <% end %>
+	</tr>
+<% end %>
+<% end %>
+<% end %>

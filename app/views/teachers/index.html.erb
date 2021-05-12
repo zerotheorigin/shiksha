@@ -1,0 +1,67 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Teachers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Dob</th>
+      <th>Dojs</th>
+      <th>Staff no</th>
+      <th>Gender</th>
+      <th>Street1</th>
+      <th>Street2</th>
+      <th>Location</th>
+      <th>City</th>
+      <th>Pincode</th>
+      <th>Qualification</th>
+      <th>Family work street1</th>
+      <th>Family work street2</th>
+      <th>Family work location</th>
+      <th>Family work city</th>
+      <th>Family work pincode</th>
+      <th>Family mobile1</th>
+      <th>Family mobile2</th>
+      <th>Family work ph</th>
+      <th>Subject</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teachers.each do |teacher| %>
+      <tr>
+        <td><%= teacher.first_name %></td>
+        <td><%= teacher.last_name %></td>
+        <td><%= teacher.DOB %></td>
+        <td><%= teacher.DOJS %></td>
+        <td><%= teacher.staff_no %></td>
+        <td><%= teacher.gender %></td>
+        <td><%= teacher.street1 %></td>
+        <td><%= teacher.street2 %></td>
+        <td><%= teacher.location %></td>
+        <td><%= teacher.city %></td>
+        <td><%= teacher.pincode %></td>
+        <td><%= teacher.qualification %></td>
+        <td><%= teacher.family_work_street1 %></td>
+        <td><%= teacher.family_work_street2 %></td>
+        <td><%= teacher.family_work_location %></td>
+        <td><%= teacher.family_work_city %></td>
+        <td><%= teacher.family_work_pincode %></td>
+        <td><%= teacher.family_mobile1 %></td>
+        <td><%= teacher.family_mobile2 %></td>
+        <td><%= teacher.family_work_ph %></td>
+        <td><%= teacher.subject_id %></td>
+        <td><%= link_to 'Show', teacher %></td>
+        <td><%= link_to 'Edit', edit_teacher_path(teacher) %></td>
+        <td><%= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Teacher', new_teacher_path %>

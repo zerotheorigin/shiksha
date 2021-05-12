@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Gokul Demos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Employee no</th>
+      <th>Name</th>
+      <th>Designation</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @gokul_demos.each do |gokul_demo| %>
+      <tr>
+        <td><%= gokul_demo.employee_no %></td>
+        <td><%= gokul_demo.name %></td>
+        <td><%= gokul_demo.designation %></td>
+        <td><%= link_to 'Show', gokul_demo %></td>
+        <td><%= link_to 'Edit', edit_gokul_demo_path(gokul_demo) %></td>
+        <td><%= link_to 'Destroy', gokul_demo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Gokul Demo', new_gokul_demo_path %>

@@ -1,0 +1,52 @@
+<%= form_with(model: sridhar_form, local: true) do |form| %>
+  <% if sridhar_form.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sridhar_form.errors.count, "error") %> prohibited this sridhar_form from being saved:</h2>
+
+      <ul>
+        <% sridhar_form.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :age %>
+    <%= form.text_field :age %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sex %>
+    <%= form.text_field :sex %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dob %>
+    <%= form.date_select :dob %>
+  </div>
+
+  <div class="field">
+    <%= form.label :doj %>
+    <%= form.date_select :doj %>
+  </div>
+
+  <div class="field">
+    <%= form.label :designation %>
+    <%= form.text_field :designation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :employer %>
+    <%= form.text_field :employer %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

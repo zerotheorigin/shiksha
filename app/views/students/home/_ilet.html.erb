@@ -1,0 +1,51 @@
+<% unless my_ilets.nil? %>
+<% my_ilets.each do |ilets| %>
+<% ilets.each do |ilet| %>
+<div class="card-body infolet_form">
+    <div class="card-title d-sm-flex">
+        <div class="profileImage1" style="align:center;">
+                                <%= (ilet.student || ilet.teacher||Tcontract.find(ilet.tcontract_id).teacher).email[0..0].capitalize %>
+        </div>
+        <b class="p-3"> <%= (ilet.student || ilet.teacher||Tcontract.find(ilet.tcontract_id).teacher).first_name%>,<%=(ilet.student || ilet.teacher || Tcontract.find(ilet.tcontract_id).teacher).last_name %></b> <span class="small p-3"> <%= (ilet.student || ilet.teacher || Tcontract.find(ilet.tcontract_id).teacher).email %> ... <%= time_ago_in_words(ilet.created_at) %> ago </span>
+    </div>
+
+    <p class="card-text small">
+        <% ilet.tag_list.each do |tag| %>
+                <%= link_to "##{tag}",students_home_search_path(:tag => tag) %>
+        <% end %>
+        <%= ilet.content %>
+     </p>
+	<% ilc = ilet.comments.new %>
+        <div class="card-footer text-black small infolet_form">
+<%= image_tag 'comment.svg' %> <%= link_to "#{ilet.comments.count} Comments","#",{id: ilc.object_id.to_s + '_div'}   %>
+<script>
+$('#<%=ilc.object_id.to_s %>_div').click(function (event) {
+$('#<%=ilc.object_id.to_s %>_hdiv').show();
+  event.preventDefault(); // Prevent link from following its href
+});
+</script>
+        </div>
+        <div class="small infolet_form" id="<%= ilc.object_id.to_s %>_hdiv" style="display:none;"> 
+	<ul>
+		<% unless ilet.comments.nil? %>
+			<% ilet.comments.order(created_at: :asc).each do |comm| %>
+				<li><%= (comm.student||comm.teacher||Tcontract.find(comm.tcontract_id).teacher).first_name %>,<%= (comm.student||comm.teacher || Tcontract.find(comm.tcontract_id).teacher).last_name%> : <%= comm.content %> </li>
+			<% end %>
+		<% end %>
+	</ul>
+        <%= form_for ilc, :html => { id: ilc.object_id.to_s } do |il| %>
+        <div class="align-self-md-stretch">
+         <div class="comment_input">
+                <%= il.rich_text_area :content,{ class: "mb-2 comment_input_text", placeholder: 'Add Comment',id: "content_#{ilc.object_id.to_s}"} %>
+                <%= il.hidden_field :parent_id, {value: ilet.id} %>
+        </div>
+        <div>
+        <%= image_submit_tag 'logo1.svg',class: "btn mb-2 profileImage1 bg-light", style: "float:right;" %>
+        </div>
+        </div>
+        <% end %>
+        </div>
+        </div>
+<% end %>
+<% end %>
+<% end %>

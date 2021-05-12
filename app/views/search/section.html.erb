@@ -1,0 +1,7 @@
+<h1>Search#section</h1>
+<p>Find me in app/views/search/section.html.erb</p>
+
+<% @sects.each do |sect| %>
+	<%= link_to "#{sect.std} - #{sect.sec}" , select_section_path(:section => sect.id), {:method => :post,local: :true} %> - <%= sect.school.name %> - <%= sect.school.city %>
+	<br>
+<% end %>

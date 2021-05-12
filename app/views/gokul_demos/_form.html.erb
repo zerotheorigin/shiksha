@@ -1,0 +1,32 @@
+<%= form_with(model: gokul_demo, local: true) do |form| %>
+  <% if gokul_demo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(gokul_demo.errors.count, "error") %> prohibited this gokul_demo from being saved:</h2>
+
+      <ul>
+        <% gokul_demo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :employee_no %>
+    <%= form.number_field :employee_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :designation %>
+    <%= form.text_field :designation %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

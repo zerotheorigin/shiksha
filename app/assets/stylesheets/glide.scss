@@ -1,0 +1,420 @@
+// Place all the styles related to the glide controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+html,body
+{ 
+//background-color:#f4f4f4 !important;
+//margin: 0px !important;
+}
+
+.glide-banner-rectangle
+{
+top: 0px;
+left: 0px;
+width: 100%;;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px 3px 16px #00000014;
+opacity: 1;
+}
+.glide-style-logo
+{
+background: transparent linear-gradient(225deg, #7011CE 0%, #9029D0 100%) 0% 0% no-repeat padding-box;
+opacity: 1;
+}
+.glide-banner-text
+{
+text-align: center;
+vertical-align:middle; 
+font: Regular 65px/72px Cookie;
+letter-spacing: 0px;
+color: #707070;
+opacity: 1;
+}
+.glide_search
+{
+background: #F0EDED 0% 0% no-repeat padding-box;
+border-radius: 18px;
+opacity: 1;
+}
+.comment_input
+{
+background: #F0EDED 0% 0% no-repeat padding-box;
+border-radius: 50px;
+opacity: 1;
+height:20px;
+width:91%;
+}
+.comment_input_text
+{
+background: #F0EDED 0% 0% no-repeat padding-box;
+border-radius: 50px;
+opacity: 1;
+height:20px;
+width:100%;
+}
+.infolet_input
+{
+background: #F0EDED 0% 0% no-repeat padding-box;
+opacity: 1;
+height:20px;
+width:100%;
+}
+.profile_peek
+{
+top: 140px;
+left: 198px;
+width: 352px;
+height: 397px;
+opacity: 0.09;
+}
+.glide_body
+{
+background: #F4F4F4 0% 0% no-repeat padding-box;
+opacity: 1;
+}
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+.email-text
+{
+text-align: center;
+text-decoration: underline;
+font: Medium 16px/21px Roboto;
+letter-spacing: 0px;
+color: #969696;
+opacity: 1;
+}
+.profileImage1 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  //background: #512DA8;
+  background: #f5f5f5;
+  font-size: 35px;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+}
+.profileImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #512DA8;
+  font-size: 60px;
+  color: #fff;
+  line-height: 80%;
+  padding: 30%;
+  display:inline-block;
+}
+.profileImage_old {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #512DA8;
+  font-size: 35px;
+  color: #fff;
+  text-align: center;
+  line-height: 150px;
+  margin: 20px 0;
+}
+.follow_text
+{
+background: #EDEDED 0% 0% no-repeat padding-box;
+border-radius: 20px;
+opacity: 1;
+
+color: var(--unnamed-color-444444);
+text-align: center;;
+font: Regular 14px/19px Roboto;
+letter-spacing: 0px;
+color: #444444;
+opacity: 1;
+}
+.search_button
+{
+height:20px;
+width:20px;
+align:right;
+background-color: white;
+border-radius:50%;
+}
+
+.sub_button1 {
+  border-radius: 16px;
+  background: transparent linear-gradient(180deg, #5C22AD 0%, #5115A2 100%) 0% 0% no-repeat padding-box;
+  text-align: center;
+  cursor: pointer;
+  margin: 5px;
+}
+.chip-text {
+
+  padding: 0px !important;
+  margin-right: 6px;
+  background-color: #ededed;
+  padding: 6px !important;
+  display: inline-block;
+  border-radius: 4px;
+  line-height: 0px;
+  height: 20px;
+  font-size: 11px;
+  line-height: 6px;
+
+}
+
+.profileImage1 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #512DA8;
+  font-size: 24px;
+  color: #fff;
+  text-align: center;
+  line-height: 40px;
+}
+
+.glide_search {
+  background: #F0EDED 0% 0% no-repeat padding-box;
+  border-radius: 20px;
+  opacity: 1;
+  padding: 12px 12px;
+  border-style: none;
+  color: #444;
+  font-size: 16px;
+}
+.glass-banner-rectangle{ padding-top:40px;}
+
+.glide-tab .active {
+  border-radius: 16px;
+  background: transparent linear-gradient(180deg, #5C22AD 0%, #5115A2 100%) 0% 0% no-repeat padding-box;
+  text-align: center;
+  cursor: pointer;
+  margin: 5px;
+}
+
+//Fresh Start
+
+.infolet_form
+{
+background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px 3px 4px #00000029;
+border: 1px solid #E6E6E6;
+border-radius: 4px;
+opacity: 1;
+}
+
+.infolet_input_box
+{
+background: #FAFAFA 0% 0% no-repeat padding-box;
+border-radius: 4px;
+opacity:1;
+}
+.infolet_tag_input_box
+{
+background: #FAFAFA 0% 0% no-repeat padding-box;
+border-radius: 4px;
+width:100%;
+opacity:1;
+}
+:root {
+
+/* Colors: */
+--unnamed-color-444444: #444444;
+--unnamed-color-1465d3: #1465D3;
+--unnamed-color-151a6a: #151A6A;
+--unnamed-color-5318a4: #5318A4;
+}
+.glide-banner-rectangle
+{
+background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px 3px 16px #00000014;
+opacity: 1;
+//z-index:9999;
+
+}
+.banner_text
+{
+text-align: left;
+font: Regular 65px/72px Cookie;
+letter-spacing: 0px;
+color: #707070;
+opacity: 1;
+}
+.profile_box
+{
+width:20%;
+opacity: 1;
+}
+
+.glide_logo
+{
+top: 25px;
+left: 198px;
+width: 42px;
+height: 42px;
+background: transparent linear-gradient(225deg, #7011CE 0%, #9029D0 100%) 0% 0% no-repeat padding-box;
+opacity: 1;
+}
+.menu_text
+{
+text-align: left;
+font: Medium 28px/37px Roboto;
+font-size:20px;
+letter-spacing: 0px;
+//color: #444;
+opacity:1;
+}
+.menu_logo
+{
+width:16px;
+}
+.menu-text:hover{ background-color:transparent !important;}
+
+
+
+//My attempt at Redesign
+
+/* Color Theme Swatches in Hex */
+:root
+{
+//--ssr-1-color: #F20732;
+--ssr-5-color: #FFF;
+//--ssr-2-color: #07038C;
+--ssr-2-color: #FFF;
+--ssr-3-color: #0439D9; 
+--ssr-4-color:  #056CF2;
+//--ssr-5-color: #F20505; 
+--ssr-fg-color: #000;
+--ssr-shadow-color: #00000014;
+
+//--ssr-2-color: #444444;
+--unnamed-color-1465d3: #1465D3;
+--unnamed-color-151a6a: #151A6A;
+--unnamed-color-5318a4: #5318A4;
+--ssr-top-bar-height-pc: 10%;
+}
+html,body 
+{
+//background-color: var(--ssr-2-color) !important;
+//margin: 0px !important;
+//color: var(--ssr-fg-color);
+}
+.glide-banner-rectangle
+{
+top: 0px;
+left: 0px;
+width: 100%;
+background: var(--ssr-5-color) 0% 0% no-repeat padding-box;
+box-shadow: 0px 3px 16px var(--ssr-shadow-color);
+opacity: 1;
+height:var(ssr-top-bar-height-pc);
+position:absolute;
+}
+.main-container
+{
+top: 13%;
+left: 0px;
+width: 100%;
+background: var(--ssr-2-color) 0% 0% no-repeat padding-box;
+padding: 0%;
+//box-shadow: 0px 3px 16px #00000014;
+box-shadow: 0px 3px 16px var(--ssr-shadow-color);
+opacity: 1;
+//height:90%;
+//border:2px solid yellow;
+position:absolute;
+display:inline-block;
+}
+.left-column
+{
+top: 2%;
+left: 0px;
+width: 20%; /* 20% of 95% */
+background: var(--ssr-2-color) 0% 0% no-repeat padding-box;
+padding: 0%;
+//box-shadow: 0px 3px 16px #00000014;
+box-shadow: 0px 3px 16px var(--ssr-shadow-color);
+opacity: 1;
+//height:30%;
+//border:1px solid yellow;
+position:relative;
+display:inline-block;
+vertical-align:top;
+}
+.left-column-1
+{
+top: 0%;
+left: 0px;
+width: 100%; /* 20% of 95% */
+background: var(--ssr-2-color) 0% 0% no-repeat padding-box;
+padding: 2.5%;
+//box-shadow: 0px 3px 16px #00000014;
+box-shadow: 0px 3px 16px var(--ssr-shadow-color);
+opacity: 1;
+height:50%;
+//border:1px solid yellow;
+position:relative;
+display:inline-block;
+vertical-align:top;
+}
+
+.left-column-2
+{
+top: 50%;
+left: 0px;
+width: 100%; /* 20% of 95% */
+background: var(--ssr-2-color) 0% 0% no-repeat padding-box;
+padding: 2.5%;
+//box-shadow: 0px 3px 16px #00000014;
+box-shadow: 0px 3px 16px var(--ssr-shadow-color);
+opacity: 1;
+height:50%;
+//border:1px solid yellow;
+position:relative;
+display:inline-block;
+vertical-align:top;
+}
+
+.middle-column
+{
+top: 2%;
+//left: 20px;
+width: 59%; /* 60% of 95% */
+background: var(--ssr-2-color) 0% 0% no-repeat padding-box;
+padding: 2.5%;
+box-shadow: 0px 3px 16px var(--ssr-shadow-color);
+opacity: 1;
+//height:30%;
+//border:1px solid yellow;
+position:relative;
+display:inline-block;
+vertical-align:top;
+}
+.right-column
+{
+top: 2%;
+//left: 80px;
+width: 20%;
+background: var(--ssr-2-color) 0% 0% no-repeat padding-box;
+padding: 2.5%;
+box-shadow: 0px 3px 16px var(--ssr-shadow-color);
+opacity: 1;
+//height:30%;
+//border:1px solid yellow;
+position:relative;
+display:inline-block;
+vertical-align:top;
+}
+.profileImage-div
+{
+  top:0 px;
+  height:150 px;
+  width:150 px;
+  text-align: center;
+  position: relative;
+  //display: inline-block;
+}

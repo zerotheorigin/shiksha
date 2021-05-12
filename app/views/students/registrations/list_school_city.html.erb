@@ -1,0 +1,11 @@
+<h2>Sign up</h2>
+
+<%= form_with(url: "/students/registration/list_school_location", method: "post") do |f|  %>
+<%= f.collection_select :school_city, @cities,:city,:city %>
+
+  <div class="actions">
+    <%= f.submit "Fetch Locations" %>
+  </div>
+<% end %>
+
+<%= render "students/shared/links" %>

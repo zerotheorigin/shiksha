@@ -1,0 +1,47 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  DOB: 2020-07-21
+  DOJS: 2020-07-21
+  staff_no: MyString
+  gender: MyString
+  street1: MyString
+  street2: MyString
+  location: MyString
+  city: MyString
+  pincode: MyString
+  qualification: MyString
+  family_work_street1: MyString
+  family_work_street2: MyString
+  family_work_location: MyString
+  family_work_city: MyString
+  family_work_pincode: MyString
+  family_mobile1: MyString
+  family_mobile2: MyString
+  family_work_ph: MyString
+  subject: one
+
+two:
+  first_name: MyString
+  last_name: MyString
+  DOB: 2020-07-21
+  DOJS: 2020-07-21
+  staff_no: MyString
+  gender: MyString
+  street1: MyString
+  street2: MyString
+  location: MyString
+  city: MyString
+  pincode: MyString
+  qualification: MyString
+  family_work_street1: MyString
+  family_work_street2: MyString
+  family_work_location: MyString
+  family_work_city: MyString
+  family_work_pincode: MyString
+  family_mobile1: MyString
+  family_mobile2: MyString
+  family_work_ph: MyString
+  subject: two

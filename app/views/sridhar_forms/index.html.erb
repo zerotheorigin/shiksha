@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sridhar Forms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Sex</th>
+      <th>Dob</th>
+      <th>Doj</th>
+      <th>Designation</th>
+      <th>Employer</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sridhar_forms.each do |sridhar_form| %>
+      <tr>
+        <td><%= sridhar_form.name %></td>
+        <td><%= sridhar_form.age %></td>
+        <td><%= sridhar_form.sex %></td>
+        <td><%= sridhar_form.dob %></td>
+        <td><%= sridhar_form.doj %></td>
+        <td><%= sridhar_form.designation %></td>
+        <td><%= sridhar_form.employer %></td>
+        <td><%= link_to 'Show', sridhar_form %></td>
+        <td><%= link_to 'Edit', edit_sridhar_form_path(sridhar_form) %></td>
+        <td><%= link_to 'Destroy', sridhar_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sridhar Form', new_sridhar_form_path %>

@@ -1,0 +1,7 @@
+	
+<%= form_with(url: "/search_city", method: "post") do %>
+  <%= label_tag(:q, "Search for School City:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+

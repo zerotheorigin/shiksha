@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Custom Forms Admission Forms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Fathers name</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Dob</th>
+      <th>Address</th>
+      <th>Phone no</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @custom_forms_admission_forms.each do |custom_forms_admission_form| %>
+      <tr>
+        <td><%= custom_forms_admission_form.name %></td>
+        <td><%= custom_forms_admission_form.fathers_name %></td>
+        <td><%= custom_forms_admission_form.age %></td>
+        <td><%= custom_forms_admission_form.gender %></td>
+        <td><%= custom_forms_admission_form.dob %></td>
+        <td><%= custom_forms_admission_form.address %></td>
+        <td><%= custom_forms_admission_form.phone_no %></td>
+        <td><%= link_to 'Show', custom_forms_admission_form %></td>
+        <td><%= link_to 'Edit', edit_custom_forms_admission_form_path(custom_forms_admission_form) %></td>
+        <td><%= link_to 'Destroy', custom_forms_admission_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Custom Forms Admission Form', new_custom_forms_admission_form_path %>

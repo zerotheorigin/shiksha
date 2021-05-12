@@ -1,0 +1,70 @@
+<div class="card-body infolet_form">
+    <div class="card-title d-sm-flex">
+        <div class="profileImage1" style="align:center;">
+                                <%= (ilet.student || ilet.teacher).email[0..0].capitalize %>
+        </div>
+        <b class="p-3"> <%= (ilet.student || ilet.teacher).first_name%>,<%=(ilet.student || ilet.teacher).last_name %></b> <span class="small p-3"> <%= (ilet.student || ilet.teacher).email %> ... <%= time_ago_in_words(ilet.created_at) %> ago </span>
+    </div>
+
+    <p class="card-text small">
+        <% ilet.tag_list.each do |tag| %>
+                <%= link_to "##{tag}",students_home_search_path(:tag => tag) %>
+        <% end %>
+        <%= ilet.content %>
+     </p>
+	<% ilc = ilet.comments.new %>
+        <div class="card-footer text-black small infolet_form">
+<%= image_tag 'comment.svg' %> <%= "#{ilet.comments.where("teacher_id=?",ilet.teacher.id).count} Questions" %> - <%= "#{ilet.comments.where("student_id=?",current_student.id).count} Answered" %>
+        </div>
+        <div class="small infolet_form" id="<%= ilc.object_id.to_s %>_hdiv"> 
+		<% unless ilet.comments.where("student_id=?",current_student.id).empty? %>
+			<ul>
+			<% ilet.comments.where("student_id=?",current_student.id).order(created_at: :asc).each do |comm| %>
+				<li><%= (comm.student).first_name %>,<%= (comm.student).last_name%> : <%= comm.content %> </li>
+			<% end %>
+			</ul>
+		<% else %>
+        		<%= form_for ilc, :html => { id: ilc.object_id.to_s } do |il| %>
+        			<div class="align-self-md-stretch">
+         			<div class="infolet_form">
+                			<%= il.rich_text_area :content,{ class: "mb-2 comment_input_text", placeholder: 'Assignment submission here',id: "content_#{ilc.object_id.to_s}"} %>
+               				 <%= il.hidden_field :parent_id, {value: ilet.id} %>
+        			</div>
+        			<div>
+     			        <%= image_submit_tag 'logo1.svg',class: "btn mb-2 profileImage1 bg-light", style: "float:right;" %>
+        			</div>
+        			</div>
+			<% end %>
+		<% end %> 
+        </div> 
+<% ilet.comments.where("teacher_id=?",ilet.teacher.id).each do |ilet1| %>
+    <p class="card-text small">
+        <%= ilet1.content %>
+     </p>
+        <% ilc = ilet1.comments.new %>
+        <div class="card-footer text-black small infolet_form">
+<%= image_tag 'comment.svg' %> <%= "#{ilet1.comments.where("teacher_id=?",ilet1.teacher.id).count} Sub Questions" %> - <%= "#{ilet1.comments.where("student_id=?",current_student.id).count} Answered" %>
+        </div>
+        <div class="small infolet_form" id="<%= ilc.object_id.to_s %>_hdiv">
+                <% unless ilet1.comments.where("student_id=?",current_student.id).empty? %>
+                        <ul>
+                        <% ilet1.comments.where("student_id=?",current_student.id).order(created_at: :asc).each do |comm| %>
+                                <li><%= (comm.student).first_name %>,<%= (comm.student).last_name%> : <%= comm.content %> </li>
+                        <% end %>
+                        </ul>
+                <% else %>
+                        <%= form_for ilc, :html => { id: ilc.object_id.to_s } do |il| %>
+                                <div class="align-self-md-stretch">
+                                <div class="infolet_form">
+                                        <%= il.rich_text_area :content,{ class: "mb-2 comment_input_text", placeholder: 'Record Answer here',id: "content_#{ilc.object_id.to_s}"} %>
+                                         <%= il.hidden_field :parent_id, {value: ilet1.id} %>
+                                </div>
+                                <div>
+                                <%= image_submit_tag 'logo1.svg',class: "btn mb-2 profileImage1 bg-light", style: "float:right;" %>
+                                </div>
+                                </div>
+                        <% end %>
+                <% end %>
+        </div>
+<% end %>
+        </div>

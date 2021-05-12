@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sundar Forms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Address</th>
+      <th>Profile</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sundar_forms.each do |sundar_form| %>
+      <tr>
+        <td><%= sundar_form.name %></td>
+        <td><%= sundar_form.age %></td>
+        <td><%= sundar_form.address %></td>
+        <td><%= sundar_form.profile %></td>
+        <td><%= link_to 'Show', sundar_form %></td>
+        <td><%= link_to 'Edit', edit_sundar_form_path(sundar_form) %></td>
+        <td><%= link_to 'Destroy', sundar_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sundar Form', new_sundar_form_path %>

@@ -1,0 +1,37 @@
+<%= form_with(model: custom_forms_sundar_assign_4_form, local: true) do |form| %>
+  <% if custom_forms_sundar_assign_4_form.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(custom_forms_sundar_assign_4_form.errors.count, "error") %> prohibited this custom_forms_sundar_assign_4_form from being saved:</h2>
+
+      <ul>
+        <% custom_forms_sundar_assign_4_form.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :Q1 %>
+    <%= form.text_field :Q1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Q2 %>
+    <%= form.text_field :Q2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Q3 %>
+    <%= form.text_field :Q3 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Q4 %>
+    <%= form.text_field :Q4 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

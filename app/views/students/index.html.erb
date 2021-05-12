@@ -1,0 +1,89 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Students</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Dob</th>
+      <th>Dojs</th>
+      <th>Admission no</th>
+      <th>Exam reg no</th>
+      <th>Gender</th>
+      <th>Street1</th>
+      <th>Street2</th>
+      <th>Location</th>
+      <th>City</th>
+      <th>Pincode</th>
+      <th>Father name</th>
+      <th>Mother name</th>
+      <th>Father occupation</th>
+      <th>Mother occupation</th>
+      <th>Father qualification</th>
+      <th>Mother qualification</th>
+      <th>Parent work street1</th>
+      <th>Parent work street2</th>
+      <th>Parent work location</th>
+      <th>Parent work city</th>
+      <th>Parent work pincode</th>
+      <th>Father mobile1</th>
+      <th>Father mobile2</th>
+      <th>Father work ph</th>
+      <th>Mother mobile1</th>
+      <th>Mother mobile2</th>
+      <th>Mother work ph</th>
+      <th>Sibling1</th>
+      <th>Sibling2</th>
+      <th>Section</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.first_name %></td>
+        <td><%= student.last_name %></td>
+        <td><%= student.DOB %></td>
+        <td><%= student.DOJS %></td>
+        <td><%= student.admission_no %></td>
+        <td><%= student.exam_reg_no %></td>
+        <td><%= student.gender %></td>
+        <td><%= student.street1 %></td>
+        <td><%= student.street2 %></td>
+        <td><%= student.location %></td>
+        <td><%= student.city %></td>
+        <td><%= student.pincode %></td>
+        <td><%= student.father_name %></td>
+        <td><%= student.mother_name %></td>
+        <td><%= student.father_occupation %></td>
+        <td><%= student.mother_occupation %></td>
+        <td><%= student.father_qualification %></td>
+        <td><%= student.mother_qualification %></td>
+        <td><%= student.parent_work_street1 %></td>
+        <td><%= student.parent_work_street2 %></td>
+        <td><%= student.parent_work_location %></td>
+        <td><%= student.parent_work_city %></td>
+        <td><%= student.parent_work_pincode %></td>
+        <td><%= student.father_mobile1 %></td>
+        <td><%= student.father_mobile2 %></td>
+        <td><%= student.father_work_ph %></td>
+        <td><%= student.mother_mobile1 %></td>
+        <td><%= student.mother_mobile2 %></td>
+        <td><%= student.mother_work_ph %></td>
+        <td><%= student.sibling1 %></td>
+        <td><%= student.sibling2 %></td>
+        <td><%= student.section_id %></td>
+        <td><%= link_to 'Show', student %></td>
+        <td><%= link_to 'Edit', edit_student_path(student) %></td>
+        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Student', new_student_path %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @infolet.student_id %>
+</p>
+
+<p>
+  <strong>Teacher:</strong>
+  <%= @infolet.teacher_id %>
+</p>
+
+<%= link_to 'Edit', edit_infolet_path(@infolet) %> |
+<%= link_to 'Back', infolets_path %>

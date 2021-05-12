@@ -1,0 +1,2 @@
+class GokulDemo < ApplicationRecord
+end

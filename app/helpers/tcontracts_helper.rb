@@ -1,0 +1,2 @@
+module TcontractsHelper
+end

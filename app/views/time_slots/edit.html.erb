@@ -1,0 +1,11 @@
+
+<!-- lib/template/erb/scaffold/edit.html.erb -->
+<% provide(:title, 'TimeSlot') %>
+<h1> SSR </h1>
+<% content_for :breadcrumb do %>
+    <%= link_to('Home', root_path) %>
+    <%= link_to('time_slots', time_slots_path) %>
+    <a class="current"><%= @time_slot.name %></a>
+<% end %>
+
+<%= render 'form' %>

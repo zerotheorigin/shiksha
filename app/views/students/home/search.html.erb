@@ -1,0 +1,517 @@
+  <!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <!-- ======= Header ======= -->
+<div class="bg_gradient">
+  <header id="header"> 
+    <div class="container-fluid">
+
+      <div class="row justify-content-center">
+        <div class="col-xl-12 d-flex align-items-center">
+          <h1 class="logo mr-auto"><a href="index.html">Shiksha</a></h1>
+          <!-- Uncomment below if you prefer to use an image logo -->
+          <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+          <nav class="nav-menu d-none d-lg-block">
+            <ul>
+              <li> <a href="#about">My Subjects</a></li>
+              <li> <a href="#sd">Section Dashboard</a></li>
+              <li><a href="#ttt">TimeTable</a></li>
+              <li><a class="tab-links" id="ma-top" href="#pills-assign-tab">My Assignment</a></li>
+              <li><a href="#ilet">Infolets</a></li>
+              <li class="drop-down"><a href="">Subject Notes</a>
+                <ul>
+                <% current_student.section.subjects.each do |subj| %>
+          <li><a class="tab-links" href="#pills-snotes-<%= subj.id %>-tab"><%= "#{subj.section.std}-#{subj.section.sec}-#{subj.sub_name}" %></a></li>
+            <% end %>
+          </ul>
+              </li>
+              <li class="drop-down"><a href="">Channels</a>
+                <ul>
+                  <li class="drop-down"><a href="#">ilets</a>
+                    <ul>
+		      <li><a class="tab-links" href="#pills-sec-tab">Section</a></li>
+		      <li><a class="tab-links" href="#pills-class-tab">Class</a></li>
+		      <li><a class="tab-links" href="#pills-school-tab">School</a></li>
+		      <li><a class="tab-links" href="#pills-edugroup-tab">Edu Group</a></li>
+		      <li><a class="tab-links" href="#pills-board-tab">Board</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav><!-- .nav-menu -->
+	  <div class="col-xl-3 d-flex align-items-right">
+                <%= form_tag(students_home_search_path, method: "post") do %>
+                        <%= text_field_tag :search, params[:search],{:class => "glide_search",:placeholder => "search ..."}  %>
+                        <%= submit_tag(">",{:class => "glide_search"}) %>
+                <% end %>
+	</div>
+        </div>
+	</div>
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container-fluid" data-aos="fade-up">
+      <div class="row justify-content-center">
+        <div class="col-xl-5 col-lg-6 pt-3 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+		<div><h1>Welcome Student - <%= current_student.first_name%>!
+ </h1><h5><a class="tab-links text-white" href="#pills-sec-tab"><%= @notice %></a></h5></div>
+        </div>
+        <div class="col-xl-4 col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="150">
+	<%=image_tag 'img/hero-img.png',class: "img-fluid animated" %>
+        </div>
+      </div>
+    </div>
+
+  </section><!-- End Hero -->
+</div>
+
+  <main id="main">
+    <!-- ======= About Section ======= -->
+    <section id="profile" class="about">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="150">
+    <%=image_tag 'img/about.jpg' , class: "img-fluid" %>
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right">
+            <h3><%= @subj.section.school.name %>,<%=@subj.section.school.city %> </h3><br/>
+    <h4> <%= (current_student || current_teacher).first_name %> profile </h4>
+            <p class="font-italic">
+            <% unless (current_student||current_teacher).infolets.where("role = ?",'profile').last.nil? %>
+             <%= (current_student||current_teacher).infolets.where("role = ? ",'profile').last.content %>
+      <% end %>
+            </p>
+            <!-- a href="#" class="read-more">Read More <i class="icofont-long-arrow-right"></i></a -->
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="150">
+		<%=image_tag 'img/about.jpg' , class: "img-fluid" %>
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right">
+            <h3><%= @subj.section.school.name %>,<%=@subj.section.school.city %> </h3><br/>
+		<h4> <%= @subj.section.std %> - <%= @subj.section.sec %>-<%= @subj.sub_name %> Dashboard </h4>
+            <p class="font-italic">
+		Click to switch over subject
+            </p>
+ <ul>
+<% current_student.section.subjects.each do |subj| %>
+<li><i class="icofont-check-circled"></i>
+	<% if (subj.id == @subj.id) %>
+	<br/>
+	<a href="#" class="read-more"><%= "#{subj.section.std} - #{subj.section.sec} - #{subj.sub_name}" %><i class="icofont-long-arrow-right"></i></a>
+	<% else %>
+	<%= form_with( url: students_home_search_path,local: :true,method: :post) do |f| %>
+        <%=f.hidden_field :subject,value: subj.id %>
+		<%=f.submit "#{subj.section.std} - #{subj.section.sec} - #{subj.sub_name}",class: "read-more bg-light" %>
+	<% end %>
+<% end %>
+<% end %>
+</li>
+ </ul>
+            <!-- a href="#" class="read-more">Read More <i class="icofont-long-arrow-right"></i></a -->
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts">
+      <div class="container">
+
+        <div class="row counters">
+
+          <div class="col-lg-4 col-6 text-center">
+            <span data-toggle="counter-up"><%= @subj.section.school.name %></span>
+            <p>School</p>
+          </div>
+
+          <div class="col-lg-2 col-6 text-center">
+            <span data-toggle="counter-up"><%= @uniq_school_teachers %></span>
+            <p>Teachers</p>
+          </div>
+
+          <div class="col-lg-2 col-6 text-center">
+            <span data-toggle="counter-up"><%= @max_std %></span>
+            <p>Classes</p>
+          </div>
+
+          <div class="col-lg-2 col-6 text-center">
+            <span data-toggle="counter-up"><%=@subj.section.school.sections.count %></span>
+            <p>Sections</p>
+          </div>
+	 <div class="col-lg-2 col-6 text-center">
+            <span data-toggle="counter-up"><%=@school_studs %></span>
+            <p>Students</p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div id="sd" class="section-title">
+          <h2>Section Dashboard</h2>
+          <p>Here you can see the activities of your section,including teachers and students and their total ilets posts and new posts since your last login.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 col-md-12 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box iconbox-blue">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174"></path>
+                </svg>
+                <i class="bx bxl-dribbble"></i>
+              </div>
+              <a class="tab-links" href="#pills-sec-tab"><h3><%= @subj.section.school.name %>,<%=@subj.section.school.city %> </h3><br/>
+    <h4> <%= @subj.section.std %> - <%= @subj.section.sec %> Dashboard </h4></a>
+              <p>
+		<div>
+<style>
+table {
+  width:100%;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+#t01 tr:nth-child(even) {
+  background-color: #eee;
+}
+#t01 tr:nth-child(odd) {
+ background-color: #fff;
+}
+#t01 th {
+  background-color: black;
+  color: white;
+}
+</style>
+<!--table border = "5px solid rgba(88, 70, 249, 0.5)" -->
+<table id="t01">
+<tr>
+<th>First Name </th>
+<th>Last Name </th>
+<th>Email</th>
+<th>Gender</th>
+<th>DOB</th>
+<th>Admission Date </th>
+<th>Subject </th>
+<th> Total</th>
+<th> New </th>
+</tr>
+<% @subj.section.subjects.each do |subj| %>
+<tr>
+<td><%= (subj.teachers.first||current_teacher).first_name %> </td>
+<td><%= (subj.teachers.first||current_teacher).last_name %> </td>
+<td><%= (subj.teachers.first||current_teacher).email %> </td>
+<td><%= (subj.teachers.first||current_teacher).gender %></td>
+<td><%= (subj.teachers.first||current_teacher).DOB %></td>
+<td><%= (subj.teachers.first||current_teacher).DOJS %> </td>
+<td><%= subj.sub_name %></td>
+<td><%= (subj.teachers.first||current_teacher).infolets.where("parent_id is null and role like ?",'%feed%').count %> </td>
+<td><%= (subj.teachers.first||current_teacher).infolets.where("parent_id is null and role like ? and created_at > ? ",'%feed%',(current_student||current_teacher).last_sign_in_at).count %></td>
+</tr>
+<% end %>
+<% @class_mates.each do |cm| %>
+<tr>
+<td><%= cm.first_name %> </td>
+<td><%= cm.last_name %> </td>
+<td><%= cm.email %> </td>
+<td><%= cm.gender %></td>
+<td><%= cm.DOB %></td>
+<td><%= cm.DOJS %> </td>
+<td></td>
+<td><%= cm.infolets.where("parent_id is null and role like ?",'%feed%').count %> </td>
+<td><%= cm.infolets.where("parent_id is null and role like ? and created_at > ? ",'%feed%',(current_student||current_teacher).last_sign_in_at).count %></td>
+</tr>
+<% end %>
+</table>
+</div>
+
+</p>
+            </div>
+          </div>
+          <div id="ttt" class="col-lg-12 col-md-12 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box iconbox-yellow">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,503.46388370962813C374.79870501325706,506.71871716319447,464.8034551963731,527.1746412648533,510.4981551193396,467.86667711651364C555.9287308511215,408.9015244558933,512.6030010748507,327.5744911775523,490.211057578863,256.5855673507754C471.097692560561,195.9906835881958,447.69079081568157,138.11976852964426,395.19560036434837,102.3242989838813C329.3053358748298,57.3949838291264,248.02791733380457,8.279543830951368,175.87071277845988,42.242879143198664C103.41431057327972,76.34704239035025,93.79494320519305,170.9812938413882,81.28167332365135,250.07896920659033C70.17666984294237,320.27484674793965,64.84698225790005,396.69656628748305,111.28512138212992,450.4950937839243C156.20124167950087,502.5303643271138,231.32542653798444,500.4755392045468,300,503.46388370962813"></path>
+                </svg>
+                <i class="bx bx-layer"></i>
+              </div>
+              <h4><a href="#ttt"><%= @subj.section.school.name %>,<%=@subj.section.school.city %><br/>
+              <%= "#{(current_student||current_teacher).first_name},#{(current_student||current_teacher).last_name} TimeTable" %>
+              </a></h4>
+              <p>
+Click on a subject to go to Subject Notes section for that Subject.
+<div>
+        <% tt_header_day = ["Mon","Tue","Wed","Thu","Fri"] %>
+        <table>
+                <% for i in 0..4 do %>
+                        <tr>
+                                <td><%= tt_header_day[i] %> </td>
+                                <% for p in 0..4 do %>
+                                <td> 
+                                        <% Timetable.where("tt_day = ? and tt_period=? and subject_id in (?)",i+1,p+1,current_student.section.subject_ids).each do |tt| %>
+					<div class="p-1">	
+						<a class="btn btn-primary tab-links" href=<%= "#pills-snotes-#{tt.subject.id}-tab" %>><%= "#{tt.subject.section.std}-#{tt.subject.section.sec}-#{tt.subject.sub_name}" %></a>
+					</div>
+                                        <% end %>
+                                </td>
+                                <% end %>
+                        </tr>
+                <% end %>
+        </table>
+</div>
+		</p>
+            </div>
+          </div>
+
+          <div id="ilet" class="col-lg-12 col-md-12 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="icon-box iconbox-red">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,532.3542879108572C369.38199826031484,532.3153073249985,429.10787420159085,491.63046689027357,474.5244479745417,439.17860296908856C522.8885846962883,383.3225815378663,569.1668002868075,314.3205725914397,550.7432151929288,242.7694973846089C532.6665558377875,172.5657663291529,456.2379748765914,142.6223662098291,390.3689995646985,112.34683881706744C326.66090330228417,83.06452184765237,258.84405631176094,53.51806209861945,193.32584062364296,78.48882559362697C121.61183558270385,105.82097193414197,62.805066853699245,167.19869350419734,48.57481801355237,242.6138429142374C34.843463184063346,315.3850353017275,76.69343916112496,383.4422959591041,125.22947124332185,439.3748458443577C170.7312796277747,491.8107796887764,230.57421082200815,532.3932930995766,300,532.3542879108572"></path>
+                </svg>
+                <i class="bx bx-slideshow"></i>
+              </div>
+              <h4><a href="">ilet</a></h4>
+              <p>Welcome to the <i>ilet</i>.Feel free to communicate across this platform.
+<div>
+<!-- Glide form starts -->
+        <div class="card p-3">
+                <div class="card-body small" id="glide_form">
+                <%= form_with(model: @infolet, local: true) do |form| %>
+  <% if @infolet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@infolet.errors.count, "error") %> prohibited this infolet from being saved:</h2>
+
+      <ul>
+        <% @infolet.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= form.rich_text_area :content,class: "infolet_input_box", placeholder: 'Infolet here' %>
+    <%= form.text_field :tag_list,class: "infolet_tag_input_box", placeholder: 'Tags' %>
+    <%= form.hidden_field :parent_id, class: "form-control" %>
+    <%= form.hidden_field :subject_id,value: @subj.id.to_s %>
+    <!-- in users/_form.html.erb -->
+    <%= form.collection_select(:role, Infolet::ROLES, :to_s, lambda{|i| i.to_s.humanize}) %>
+    <%= form.collection_select(:tcontract_id,current_student.section.subjects,lambda{|t| t.tcontracts.first.id},lambda{|i| i.section.std+'-'+i.section.sec+'-'+i.sub_name },{prompt: true,selected: @subj.id }) %>
+<%= button_tag :submit, class: "btn btn-primary sub_button1",style: "float: right;"  do %>
+       <%= image_tag 'logo1.svg',class: "search_button" %><i> ilet</i> 
+    <% end %>
+
+<% end %>
+</div>
+</div>
+</div>
+</p>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Features Section ======= -->
+    <section id="features" class="features">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Feeds</h2>
+          <p>Feeds are the powerful communication channels with a purpose.There are many Feeds to explore in this platform.
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column align-items-lg-center">
+            <div class="icon-box mt-5 mt-lg-0" data-aos="fade-up" data-aos-delay="100">
+              <i class="bx bx-receipt"></i>
+             <a class="tab-links read-more" href="#pills-sec-tab"><h4>Sec Feed</h4></a>
+              <p>Section Feed.Its purpose is collaboration within a class section.Any one within a section and its teachers can communicate amongs them and others will not have a clue. </p>
+            </div>
+            <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="200">
+              <i class="bx bx-cube-alt"></i>
+	<a class="tab-links read-more" href="#pills-class-tab"><h4>Class Feed</h4></a>
+              <p>Class Feed.Do you need a space for larger discussion amongs sections of the same standard.i.e Class level discussion.Here you go...</p>
+	
+            </div>
+            <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="300">
+              <i class="bx bx-images"></i>
+		<a class="tab-links read-more" href="#pills-school-tab"><h4>School Feed</h4></a>
+              <p>School level Feed.Powerful and reaches the entire school.Be careful and responsible.</p
+
+            </div>
+            <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="400">
+              <i class="bx bx-shield"></i>
+		<a class="tab-links read-more" href="#pills-edugroup-tab"><h4>Education Group</h4></a>
+              <p>It goes a way long.cutting across multiple schools belonging to your educational group.</p>
+            </div>
+	 <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="400">
+              <i class="bx bx-shield"></i>
+                <a class="tab-links read-more" href="#pills-assign-tab"><h4>My Assignments</h4></a>
+              <p>Well.Buckle up...Its time for work.</p>
+            </div>
+	 <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="400">
+              <i class="bx bx-shield"></i>
+                <a class="tab-links read-more" href="#pills-snotes-tab"><h4>Subject Notes</h4></a>
+              <p>Help is here.Subject Notes from Teacher and students community</p>
+            </div>
+          </div>
+          </div>
+          <div class="image col-lg-6 order-1 order-lg-2 " data-aos="zoom-in" data-aos-delay="100">
+<%=image_tag 'img/features.svg',class: "img-fluid" %>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Features Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials section-bg">
+      <div class="container" data-aos="fade-up">
+<div class="p-5 bg-white rounded shadow mb-5">
+<!-- nav-tabs starts here 
+    <ul class="nav nav-tabs nav-pills with-arrow flex-column flex-sm-row text-center p-3" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+    	<%= link_to "My Section", students_home_sec_feed_path, {remote: true,method: "get",class: "nav-link active",onclick: "$('#incoming_ilet_ajax').toggleClass('preloader');$('a.nav-link.active').toggleClass('active');$(this).toggleClass('active');"} %>
+    </li>
+    <li class="nav-item" role="presentation">
+<%= link_to "My Class", students_home_class_feed_path, {remote: true,method: "get",class: "nav-link",onclick: "$('#incoming_ilet_ajax').toggleClass('preloader');$('a.nav-link.active').toggleClass('active');$(this).toggleClass('active');"} %>
+    </li>
+    <li class="nav-item" role="presentation">
+<%= link_to "My School", students_home_school_feed_path, {remote: true,method: "get",class: "nav-link",onclick: "$('#incoming_ilet_ajax').toggleClass('preloader');$('a.nav-link.active').toggleClass('active');$(this).toggleClass('active');"} %>
+    </li>
+<li class="nav-item" role="presentation">
+<%= link_to "My EduGroup", students_home_edugroup_feed_path, {remote: true,method: "get",class: "nav-link",onclick: "$('#incoming_ilet_ajax').toggleClass('preloader');$('a.nav-link.active').toggleClass('active');$(this).toggleClass('active');"} %>
+    </li>
+    <li class="nav-item" role="presentation">
+<%= link_to "My Board", students_home_board_feed_path, {remote: true,method: "get",class: "nav-link",onclick: "$('#incoming_ilet_ajax').toggleClass('preloader');$('a.nav-link.active').toggleClass('active');$(this).toggleClass('active');"} %>
+    </li>
+<li class="nav-item" role="presentation">
+<%= link_to "My Assignments", students_home_assign_feed_path, {remote: true,method: "get",class: "nav-link",onclick: "$('#incoming_ilet_ajax').toggleClass('preloader');$('a.nav-link.active').toggleClass('active');$(this).toggleClass('active');"} %>
+    </li>
+    </ul>
+<div class="self-align-center" style="width:60%;align:center" id="incoming_ilet_ajax">
+</div-->
+<ul class="nav nav-tabs nav-pills with-arrow flex-column flex-sm-row text-center" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-sec-tab" data-toggle="pill" href="#pills-sec" role="tab" aria-controls="pills-sec" aria-selected="true">My Section</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-class-tab" data-toggle="pill" href="#pills-class" role="tab" aria-controls="pills-class" aria-selected="false">My Class</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-school-tab" data-toggle="pill" href="#pills-school" role="tab" aria-controls="pills-school" aria-selected="false">My School</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-edugroup-tab" data-toggle="pill" href="#pills-edugroup" role="tab" aria-controls="pills-edugroup" aria-selected="false">My Edu.Group</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-board-tab" data-toggle="pill" href="#pills-board" role="tab" aria-controls="pills-board" aria-selected="false">My Board</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-assign-tab" data-toggle="pill" href="#pills-assign" role="tab" aria-controls="pills-assign" aria-selected="false">My Assignments</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-tt-tab" data-toggle="pill" href="#ttt" role="tab" aria-controls="pills-tt" aria-selected="false">Time Table</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-snotes-tab" data-toggle="pill" href="#pills-snotes" role="tab" aria-controls="pills-snotes" aria-selected="false">Subject Notes</a>
+  </li>
+<% current_student.section.subjects.each do |subj|%>
+   <li class="nav-item" role="presentation">
+   	 <a class="nav-link" id="pills-snotes-<%=subj.id %>-tab" data-toggle="pill" href="#pills-snotes-<%=subj.id %>" role="tab" aria-controls="pills-snotes-<%= subj.id %>" aria-selected="false"><%= subj.section.std %> - <%= subj.section.sec %>-<%= subj.sub_name %></a>
+  </li>	
+<% end %>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade" id="pills-sec" role="tabpanel" aria-labelledby="pills-home-tab">
+<div style="width:60%;align:center">
+<%= render 'ilet',:my_ilets => @incoming_ilets  %>
+</div>
+</div>
+ <div class="tab-pane fade" id="pills-sec-ajax-wrapper" role="tabpanel" aria-labelledby="pills-home-tab"> 
+</div>
+  <div class="tab-pane fade" id="pills-class" role="tabpanel" aria-labelledby="pills-profile-tab">
+<div style="width:60%;align:center">
+<%= render 'ilet', :my_ilets => @incoming_class_ilets  %>
+</div>
+</div>
+  <div class="tab-pane fade" id="pills-school" role="tabpanel" aria-labelledby="pills-contact-tab">
+<div style="width:60%;align:center">
+<%= render 'ilet',:my_ilets => @incoming_school_ilets  %>
+</div>
+</div>
+  <div class="tab-pane fade" id="pills-edugroup" role="tabpanel" aria-labelledby="pills-profile-tab">
+<div style="width:60%;align:center">
+<%= render 'ilet', :my_ilets => @incoming_edugroup_ilets  %>
+</div>
+</div>
+  <div class="tab-pane fade" id="pills-board" role="tabpanel" aria-labelledby="pills-profile-tab">
+<div style="width:60%;align:center">
+<%= render 'ilet', :my_ilets => @incoming_board_ilets  %>
+</div>
+</div>
+  <div class="tab-pane fade" id="pills-assign" role="tabpanel" aria-labelledby="pills-assign-tab">
+<div style="width:60%;align:center">
+<%= render 'ilet', :my_ilets => @incoming_assign_ilets  %>
+</div>
+</div>
+<% current_student.section.subjects.each do |subj| %>
+<div class="tab-pane fade" id="pills-snotes-<%=subj.id %>" role="tabpanel" aria-labelledby="pills-assign-tab">
+<div style="width:60%;align:center">
+<% ct_tc = subj.tcontracts.first %>
+<%= render 'ilet', :my_ilets => @incoming_snotes_ilets[ct_tc.id]  %>
+</div>
+</div>
+<% end %>
+</div>
+  <a href="#" class="back-to-top"><span class="btn btn-success">Top</a>
+  <div id="page_loader" class="preloader"></div>
+  <script>
+$(document).ready(function() {
+
+$('#page_loader').removeClass('preloader');
+console.log("JQ Loaded");
+	//$("#ma-top").click(function(event){
+	$('.tab-links').click(function(event){
+//	alert($(this).attr('href'));
+	var t_id = $(this).attr('href');
+	$(t_id).click();
+$('html, body').animate({
+                        'scrollTop' : $("#pills-assign-tab").position().top-25
+                    }, 2000);
+	event.preventDefault();
+});
+});
+
+
+</script>

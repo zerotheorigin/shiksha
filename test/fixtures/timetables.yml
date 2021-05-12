@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tt_day: MyString
+  tt_period: MyString
+  section: one
+  subject: one
+
+two:
+  tt_day: MyString
+  tt_period: MyString
+  section: two
+  subject: two

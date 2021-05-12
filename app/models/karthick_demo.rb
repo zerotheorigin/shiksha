@@ -1,0 +1,2 @@
+class KarthickDemo < ApplicationRecord
+end

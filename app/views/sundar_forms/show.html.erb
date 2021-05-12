@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sundar_form.name %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @sundar_form.age %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @sundar_form.address %>
+</p>
+
+<p>
+  <strong>Profile:</strong>
+  <%= @sundar_form.profile %>
+</p>
+
+<%= link_to 'Edit', edit_sundar_form_path(@sundar_form) %> |
+<%= link_to 'Back', sundar_forms_path %>

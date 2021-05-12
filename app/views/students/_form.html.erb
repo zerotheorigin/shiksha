@@ -1,0 +1,177 @@
+<%= form_with(model: student, local: true) do |form| %>
+  <% if student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+        <% student.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :DOB %>
+    <%= form.date_select :DOB %>
+  </div>
+
+  <div class="field">
+    <%= form.label :DOJS %>
+    <%= form.date_select :DOJS %>
+  </div>
+
+  <div class="field">
+    <%= form.label :admission_no %>
+    <%= form.text_field :admission_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :exam_reg_no %>
+    <%= form.text_field :exam_reg_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender %>
+    <%= form.text_field :gender %>
+  </div>
+
+  <div class="field">
+    <%= form.label :street1 %>
+    <%= form.text_field :street1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :street2 %>
+    <%= form.text_field :street2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pincode %>
+    <%= form.text_field :pincode %>
+  </div>
+
+  <div class="field">
+    <%= form.label :father_name %>
+    <%= form.text_field :father_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mother_name %>
+    <%= form.text_field :mother_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :father_occupation %>
+    <%= form.text_field :father_occupation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mother_occupation %>
+    <%= form.text_field :mother_occupation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :father_qualification %>
+    <%= form.text_field :father_qualification %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mother_qualification %>
+    <%= form.text_field :mother_qualification %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parent_work_street1 %>
+    <%= form.text_field :parent_work_street1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parent_work_street2 %>
+    <%= form.text_field :parent_work_street2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parent_work_location %>
+    <%= form.text_field :parent_work_location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parent_work_city %>
+    <%= form.text_field :parent_work_city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parent_work_pincode %>
+    <%= form.text_field :parent_work_pincode %>
+  </div>
+
+  <div class="field">
+    <%= form.label :father_mobile1 %>
+    <%= form.text_field :father_mobile1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :father_mobile2 %>
+    <%= form.text_field :father_mobile2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :father_work_ph %>
+    <%= form.text_field :father_work_ph %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mother_mobile1 %>
+    <%= form.text_field :mother_mobile1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mother_mobile2 %>
+    <%= form.text_field :mother_mobile2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mother_work_ph %>
+    <%= form.text_field :mother_work_ph %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sibling1 %>
+    <%= form.text_field :sibling1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sibling2 %>
+    <%= form.text_field :sibling2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :section_id %>
+    <%= form.text_field :section_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

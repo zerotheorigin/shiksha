@@ -1,0 +1,2 @@
+class SridharForm < ApplicationRecord
+end

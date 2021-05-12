@@ -1,0 +1,2 @@
+class SundarForm < ApplicationRecord
+end

@@ -1,0 +1,43 @@
+Course Examination
+Multiple Choice
+Exam Title
+Description_start
+Description_detail
+
+1.First Question
+A.OptionA
+B.OptionB
+C.Option C
+D.Option D
+
+2.Second Question
+A.OptionA
+B.OptionB
+C.Option C
+D.Option D
+
+3.Third Question
+A.OptionA
+B.OptionB
+C.Option C
+D.Option D
+
+4.Fourth Question
+A.OptionA
+B.OptionB
+C.Option C
+D.Option D
+
+5.Fifth Question
+A.OptionA
+B.OptionB
+C.Option C
+D.Option D
+
+6.Sixth Question
+A.OptionA
+B.OptionB
+C.Option C
+D.Option D
+
+End of Examination

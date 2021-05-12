@@ -1,0 +1,2 @@
+json.extract! student, :id, :first_name, :last_name, :DOB, :DOJS, :admission_no, :exam_reg_no, :gender, :street1, :street2, :location, :city, :pincode, :father_name, :mother_name, :father_occupation, :mother_occupation, :father_qualification, :mother_qualification, :parent_work_street1, :parent_work_street2, :parent_work_location, :parent_work_city, :parent_work_pincode, :father_mobile1, :father_mobile2, :father_work_ph, :mother_mobile1, :mother_mobile2, :mother_work_ph, :sibling1, :sibling2, :section_id, :created_at, :updated_at
+json.url student_url(student, format: :json)

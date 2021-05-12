@@ -1,0 +1,52 @@
+<%= form_with(model: custom_forms_admission_form, local: true) do |form| %>
+  <% if custom_forms_admission_form.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(custom_forms_admission_form.errors.count, "error") %> prohibited this custom_forms_admission_form from being saved:</h2>
+
+      <ul>
+        <% custom_forms_admission_form.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fathers_name %>
+    <%= form.text_field :fathers_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :age %>
+    <%= form.text_field :age %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender %>
+    <%= form.text_field :gender %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dob %>
+    <%= form.date_select :dob %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_area :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_no %>
+    <%= form.text_field :phone_no %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

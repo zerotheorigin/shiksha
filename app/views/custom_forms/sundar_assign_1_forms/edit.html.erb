@@ -1,0 +1,11 @@
+
+<!-- lib/template/erb/scaffold/edit.html.erb -->
+<% provide(:title, 'CustomForms::SundarAssign1Form') %>
+<h1> SSR </h1>
+<% content_for :breadcrumb do %>
+    <%= link_to('Home', root_path) %>
+    <%= link_to('custom_forms_sundar_assign_1_forms', custom_forms_sundar_assign_1_forms_path) %>
+    <a class="current"><%= @custom_forms_sundar_assign_1_form.name %></a>
+<% end %>
+
+<%= render 'form' %>

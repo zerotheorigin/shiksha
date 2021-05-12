@@ -1,0 +1,11 @@
+
+<!-- lib/template/erb/scaffold/edit.html.erb -->
+<%% provide(:title, '<%= class_name %>') %>
+<h1> SSR </h1>
+<%% content_for :breadcrumb do %>
+    <%%= link_to('Home', root_path) %>
+    <%%= link_to('<%= plural_table_name %>', <%= plural_table_name %>_path) %>
+    <a class="current"><%%= @<%= singular_table_name %>.name %></a>
+<%% end %>
+
+<%%= render 'form' %>

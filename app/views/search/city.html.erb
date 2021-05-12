@@ -1,0 +1,18 @@
+<h1>Search#city</h1>
+<p>Find me in app/views/search/city.html.erb</p>
+
+<%= debug @cities %>
+
+<%= form_with(url: "/search_school",local: true, method: "POST") do %>
+  <%= label_tag(:qc, "select city") %>
+  <select id="qc" name="qc">
+	<% @cities.each do |c| %>
+		<option value="<%= c %>"><%=c%></option>
+	<% end %>
+</select> 
+  <%= submit_tag("Search") %>
+<% end %>
+
+
+
+
